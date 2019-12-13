@@ -1,0 +1,24 @@
+{
+  "name": "key-namespacing",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Simon Warta <simon@warta.it>",
+  "license": "MIT",
+  "scripts": {
+    "format": "prettier --write --loglevel warn \"./src/**/*.ts\"",
+    "build": "rm -rf ./build && tsc",
+    "pretest": "yarn build",
+    "test": "jest --rootDir ./build"
+  },
+  "dependencies": {
+    "@iov/encoding": "^1.2.0",
+    "ts-node": "^8.5.4"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.23",
+    "@types/node": "^12.12.17",
+    "jest": "^24.9.0",
+    "prettier": "^1.19.1",
+    "typescript": "^3.7.3"
+  }
+}
