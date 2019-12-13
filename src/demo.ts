@@ -1,22 +1,13 @@
-import { Encoding } from "@iov/encoding";
 import { lexi } from "./comparators";
+import { toAsciihex, fromAsciihex } from "./asciihex";
 
 const separator = 0x00;
 
-function encodeComponet(data: Uint8Array): Uint8Array {
-  const hex = Encoding.toHex(data);
-  return Encoding.toAscii(hex);
-}
-
 function encodeComponents(components: readonly Uint8Array[]): Uint8Array {
-  return components.map(encodeComponet).reduce((accumulator, current, index) => {
+  return components.map(toAsciihex).reduce((accumulator, current, index) => {
     if (index === 0) return current;
     else return new Uint8Array([...accumulator, separator, ...current]);
   }, new Uint8Array([]));
-}
-
-function decodeComponent(hexdata: Uint8Array): Uint8Array {
-  return Encoding.fromHex(Encoding.fromAscii(hexdata));
 }
 
 function decodeComponents(hexdata: Uint8Array): readonly Uint8Array[] {
@@ -37,7 +28,7 @@ function decodeComponents(hexdata: Uint8Array): readonly Uint8Array[] {
 
   // console.log(components)
 
-  return components.map(decodeComponent);
+  return components.map(fromAsciihex);
 }
 
 const examples = [
