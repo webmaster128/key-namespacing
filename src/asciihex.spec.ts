@@ -9,9 +9,9 @@ function range(start: number, count: number): readonly number[] {
   );
 }
 
-const [x0, x1, x2, x3, x4, x5, x6, x7, x8, x9] = range(48, 10);
-const [xA, xB, xC, xD, xE, xF] = range(65, 6);
-const [xa, xb, xc, xd, xe, xf] = range(97, 6);
+export const [x0, x1, x2, x3, x4, x5, x6, x7, x8, x9] = range(48, 10);
+export const [xA, xB, xC, xD, xE, xF] = range(65, 6);
+export const [xa, xb, xc, xd, xe, xf] = range(97, 6);
 
 describe("toAsciihex", () => {
   it("works", () => {
