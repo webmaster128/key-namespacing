@@ -7,29 +7,6 @@ function encodeExample(components: readonly Uint8Array[]): Uint8Array {
   return join(components.map(toAsciihex));
 }
 
-/*
-function decodeComponents(hexdata: Uint8Array): readonly Uint8Array[] {
-  const components = new Array<Uint8Array>();
-
-  let startPos = 0;
-  for (let pos = 0; ; pos++) {
-    if (pos === hexdata.length) {
-      components.push(hexdata.slice(startPos, pos));
-      break;
-    }
-    if (hexdata[pos] === separator) {
-      components.push(hexdata.slice(startPos, pos));
-      pos++; // skip separator
-      startPos = pos;
-    }
-  }
-
-  // console.log(components)
-
-  return components.map(fromAsciihex);
-}
-*/
-
 const examples = [
   [new Uint8Array([0x03])],
   [new Uint8Array([0x01, 0x01]), new Uint8Array([0x01])],
