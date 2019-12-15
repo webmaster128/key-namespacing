@@ -1,16 +1,13 @@
 import { lexi } from "./comparators";
-import { toAsciihex, fromAsciihex } from "./asciihex";
+import { toAsciihex } from "./asciihex";
 import { debugRawKey } from "./debug";
+import { join } from "./join";
 
-const separator = 0x00;
-
-function encodeComponents(components: readonly Uint8Array[]): Uint8Array {
-  return components.map(toAsciihex).reduce((accumulator, current, index) => {
-    if (index === 0) return current;
-    else return new Uint8Array([...accumulator, separator, ...current]);
-  }, new Uint8Array([]));
+function encodeExample(components: readonly Uint8Array[]): Uint8Array {
+  return join(components.map(toAsciihex));
 }
 
+/*
 function decodeComponents(hexdata: Uint8Array): readonly Uint8Array[] {
   const components = new Array<Uint8Array>();
 
@@ -31,6 +28,7 @@ function decodeComponents(hexdata: Uint8Array): readonly Uint8Array[] {
 
   return components.map(fromAsciihex);
 }
+*/
 
 const examples = [
   [new Uint8Array([0x03])],
@@ -55,7 +53,7 @@ const examples = [
   [new Uint8Array([0x01, 0x02, 0x00])],
 ];
 
-const encodedExamples = examples.map(encodeComponents);
+const encodedExamples = examples.map(encodeExample);
 // console.log(encodedComponents);
 
 encodedExamples.sort(lexi);
