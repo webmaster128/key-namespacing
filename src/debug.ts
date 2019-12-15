@@ -6,7 +6,7 @@ import { unjoin } from "./join";
 export function debugRawKey(key: Uint8Array): string {
   return unjoin(key)
     .map(bytes => {
-      return [...bytes].map((byte): string => `${String.fromCharCode(byte)}`).join(" ");
+      return [...bytes].map(byte => `'${String.fromCharCode(byte)}'`).join(" ");
     })
-    .join(" / ");
+    .join("  :  ");
 }
