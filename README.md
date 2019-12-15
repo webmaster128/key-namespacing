@@ -44,7 +44,7 @@ all keys within `foo:` in order.
 
 This approach achieves properties 1.-3.
 
-## 0xFF separated
+## 0x00 separated ASCIIHEX
 
 In order to get lexicographically ordered namespaces, we need to avoid the
 length prefix. Instead we need a way to separate between namespace and key.
@@ -56,7 +56,7 @@ hex, or more precisely the ascii encoding of hex `ascihex(x) := ascii(hex(x))`.
 We use lower case hex for no reason other than the need to fix a casing. The
 output range of asciihex is `'0' - '9'` (i.e. 48-57) and `'a' - 'f'` (i.e.
 97-102). When we asciihex encode the namespace and the key, we can use the null
-byte 0x00 as a separator:
+byte [0x00 as a separator](docs/choice_of_separator.md):
 
 ```
 asciihex(namespace) | 0x00 | asciihex(key)
