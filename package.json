@@ -9,7 +9,8 @@
     "format-text": "prettier --write --prose-wrap always --print-width 80 \"./*.md\" \"./docs/**/*.md\"",
     "build": "rm -rf ./build && tsc",
     "pretest": "yarn build",
-    "test": "jest --rootDir ./build"
+    "test": "jest --rootDir ./build",
+    "demo": "ts-node src/demo.ts"
   },
   "dependencies": {
     "@iov/encoding": "^1.2.0",
