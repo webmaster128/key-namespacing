@@ -45,6 +45,43 @@ all keys within `foo:` in order.
 This approach achieves properties 1.-3. with the limitation that namespace
 length must not exceed the maximal output value of the `len` function.
 
+### Nesting
+
+This approach can be nested by inserting a second level `namespace:key` into the
+first level's `key` field. More precisely we generalize the definition from
+above for the key `namespace_1:namespace_2:...:namespace_m:key_m`:
+
+```
+key_0 := len(namespace_1) | namespace_1 | key_1
+key_1 := len(namespace_2) | namespace_2 | key_2
+key_2 := len(namespace_3) | namespace_3 | key_3
+...
+key_m := raw application level key
+```
+
+or
+
+```
+key_n := len(namespace_{n+1}) | namespace_{n+1} | key_{n+1}
+         for n = 0, ..., m-1
+key_m := raw application level key
+```
+
+Looking at the recursive definition it is easy to see that we can also implement
+the final key_0 in an interative way:
+
+```
+key_0 := len(namespace_1) | namespace_1
+         | len(namespace_2) | namespace_2
+         | len(namespace_3) | namespace_3
+         | ...
+         | len(namespace_m) | namespace_m
+         | key_m
+```
+
+Collision resistance is preserved as long as at every level (including the root
+level) either all keys or no key uses the length-prefixed format.
+
 ## 0x00 separated ASCIIHEX
 
 In order to get lexicographically ordered namespaces, we need to avoid the
