@@ -4,7 +4,7 @@ The goal of this is to find an approach to namespacing for simple key value
 databases such auch leveldb with the following properties:
 
 1. Application level namespaces and keys can have any length and binary value
-2. Collision resistent, i.e. two keys in different namespaces can never have the
+2. Collision resistant, i.e. two keys in different namespaces can never have the
    same binary encoding
 3. Lexicographically sort order within a namespace remains intact
 4. Lexicographically sort order of namespaces
@@ -19,7 +19,7 @@ syntax).
 ## Naive approach
 
 The naive approach to namespacing is to concatenate the namespace with the key
-directly (`namespace | key`). However, this is not collision resistent if you
+directly (`namespace | key`). However, this is not collision resistant if you
 want to support namespaces that are prefixes of each other.
 
 A simpler counter example is `foo:bar` and `fo:obar`, which both have the same
