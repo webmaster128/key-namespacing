@@ -42,7 +42,8 @@ Since all resulting keys in the same namespace have a common prefix, the order
 within the namespace is preserved. A range query `"foo" <= x < "fop"` returns
 all keys within `foo:` in order.
 
-This approach achieves properties 1.-3.
+This approach achieves properties 1.-3. with the limitation that namespace
+length must not exceed the maximal output value of the `len` function.
 
 ## 0x00 separated ASCIIHEX
 
